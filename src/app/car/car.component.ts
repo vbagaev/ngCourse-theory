@@ -1,23 +1,33 @@
-import { Component, Input, ContentChild, ElementRef, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ConsoleService } from '../console.service';
+
 
 @Component({
   selector: 'app-car',
   templateUrl: './car.component.html',
-  styleUrls: ['./car.component.css']
+  styleUrls: ['./car.component.css'],
+  providers: [ConsoleService]
 })
-export class CarComponent implements OnInit{
+export class CarComponent {
 
-@Input('carItem')
-car: {name: string, year: number};
+  @Input() car;
 
-@ContentChild('carHeading')  carHeading: ElementRef;
+  constructor (private consoleService: ConsoleService) {
 
-constructor() {
-	console.log('constructor');
-}
+  }
 
-ngOnInit() {
-	console.log('ngOnInit');
-}
+  getClass() {
+    return {
+      'list-group-item-success': !this.car.isSold,
+      'list-group-item-danger': this.car.isSold,
+      'list-group-item': true
+    }
+  }
+
+  onAction(type: string) {
+    this.car.isSold = type === 'buy' ? true : false;
+    const service = new ConsoleService();
+    this.consoleService.log(`${this.car.name} status ${type}`);
+  }
 
 }

@@ -2,17 +2,28 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  headerText = 'Создание своей директивы.';
-  items = [1, 2, 3, 4, 5];
-  current = 2;
+  cars = [
+    {
+      name: 'Ford',
+      isSold: false
+    },
+    {
+      name: 'Mazda',
+      isSold: true
+    },
+    {
+      name: 'Mercedes',
+      isSold: false
+    }
+  ];
 
-  
-  onClick(number: number) {
-  		this.current = number;
-  		console.log(this.current);
+  addCarToList(carName: string) {
+    this.cars.push({
+      name: carName,
+      isSold: false
+    });
   }
 }
