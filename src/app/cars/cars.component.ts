@@ -10,13 +10,15 @@ export class CarsComponent {
   cars: [{name: string, year: number}] = [{
     name: 'Ford',
     year: 2015
-  }, {
-    name: 'Mazda',
-    year: 2010
-  }, {
-    name: 'Audi',
-    year: 2017
-  }];
+  },
+//   {
+//    name: 'Mazda',
+//    year: 2010
+//  }, {
+//    name: 'Audi',
+//    year: 2017
+//  }
+  ];
 
   constructor() {
   }
