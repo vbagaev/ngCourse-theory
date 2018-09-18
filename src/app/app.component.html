@@ -1,22 +1,17 @@
 <div class="col-xs-8 col-xs-offset-2">
-  <form (ngSubmit)="submitForm(form)" #form="ngForm">
-    <div ngModelGroup="user" #user="ngModelGroup">
-      <div class="form-group" [ngClass]="{'has-error': email.invalid && email.touched}" >
-        <label>Email</label>
-        <input type="text" class="form-control" ngModel name="email" required email #email="ngModel">
-        <p *ngIf="email.invalid && email.touched">Введите корректный email</p>
-        <button type="button" class="btn btn-primary" (click)="addRandEmail()">Добавить случайный email</button>
-       </div>
-      <div class="form-group" [ngClass]="{'has-error': pass.invalid && pass.touched}">
-        <label>Пароль</label>
-        <input type="password" class="form-control" ngModel name="pass" required #pass="ngModel" >
-        <p *ngIf="pass.invalid && pass.touched">Пароль не должен быть пустым.</p>
-      </div>
-      <p *ngIf="user.invalid && user.touched">Данные пользователя введены некорректно!!!</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label>Пароль</label>
+      <input type="password" class="form-control" formControlName="pass">
     </div>
     <div class="form-group">
       <label>Выберите страну</label>
-      <select class="form-control" ngModel name="country" required [ngModel]="defaultCountry">
+      <select class="form-control" formControlName="country">
         <option value="ru">Россия</option>
         <option value="by">Белоруссия</option>
         <option value="ua">Украина</option>
@@ -24,16 +19,10 @@
     </div>
     <div class="radio" *ngFor="let ans of answers">
       <label>
-        <input type="radio" [value]="ans.type" ngModel name="answer"> {{ans.text}}
+        <input type="radio" [value]="ans.type" formControlName="answer"> {{ans.text}}
       </label>
     </div>
-    <button class="btn btn-success" type="submit" [disabled]="!form.valid">Сохранить</button>
+    <button class="btn btn-success" type="submit">Сохранить</button>
 
   </form>
-</div>
-
-<div *ngIf="isSubmited">
-  <pre>
-    {{formData | json}}
-  </pre>
 </div>
