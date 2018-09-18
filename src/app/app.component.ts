@@ -18,8 +18,34 @@ export class AppComponent {
   defaultAnswer = 'no';
   defaultCountry = 'ru';
 
+  formData = {
+
+  };
+
+  isSubmited = false;
+
 submitForm(form: NgForm) {
-  console.log('Submited!!', form);
+  console.log('Submited!!', this.form);
+  this.isSubmited = true;
+  this.formData = this.form.value;
+  this.form.reset();
 }
+
+   addRandEmail() {
+  const randEmail = 'dsdgs@fdssd.rug';
+  // this.form.setValue({
+  //   user: {
+  //     pass: '',
+  //     email: randEmail
+  //   },
+  //   country: '',
+  //   answer: ''
+  // });
+     this.form.form.patchValue(
+       {
+         user: {email: randEmail}
+       }
+     );
+   }
 
 }

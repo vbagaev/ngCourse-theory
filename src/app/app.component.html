@@ -5,6 +5,7 @@
         <label>Email</label>
         <input type="text" class="form-control" ngModel name="email" required email #email="ngModel">
         <p *ngIf="email.invalid && email.touched">Введите корректный email</p>
+        <button type="button" class="btn btn-primary" (click)="addRandEmail()">Добавить случайный email</button>
        </div>
       <div class="form-group" [ngClass]="{'has-error': pass.invalid && pass.touched}">
         <label>Пароль</label>
@@ -15,7 +16,7 @@
     </div>
     <div class="form-group">
       <label>Выберите страну</label>
-      <select class="form-control" ngModel name="contry" required [ngModel]="defaultCountry">
+      <select class="form-control" ngModel name="country" required [ngModel]="defaultCountry">
         <option value="ru">Россия</option>
         <option value="by">Белоруссия</option>
         <option value="ua">Украина</option>
@@ -29,4 +30,10 @@
     <button class="btn btn-success" type="submit" [disabled]="!form.valid">Сохранить</button>
 
   </form>
+</div>
+
+<div *ngIf="isSubmited">
+  <pre>
+    {{formData | json}}
+  </pre>
 </div>
