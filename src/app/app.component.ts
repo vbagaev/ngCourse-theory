@@ -12,7 +12,7 @@ interface Cars {
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   colors = [
     'red',
     'blue',
@@ -24,7 +24,8 @@ export class AppComponent implements OnInit{
   cars: Cars[] = [];
   carName: string = '';
 
-  constructor(private carService: CarsService) {}
+  constructor(private carService: CarsService) {
+  }
 
   ngOnInit() {
 
@@ -33,8 +34,12 @@ export class AppComponent implements OnInit{
   loadCars() {
     this.carService.getCars().subscribe((cars: Cars[]) => {
 
-      this.cars = cars;
-    });
+        this.cars = cars;
+      },
+      (error) => {
+        alert(error);
+      }
+    );
   }
 
   addCar() {
@@ -56,6 +61,7 @@ export class AppComponent implements OnInit{
         console.log(data);
       });
   }
+
   deleteCar(car: Cars) {
     this.carService.deleteCar(car)
       .subscribe((data) => {
