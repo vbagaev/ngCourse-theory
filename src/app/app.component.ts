@@ -21,25 +21,19 @@ export class AppComponent implements OnInit {
     'yellow',
     'grey'
   ];
-  cars: Cars[] = [];
+  cars: any;
   carName: string = '';
+  appTitle;
 
   constructor(private carService: CarsService) {
   }
 
   ngOnInit() {
-
+    this.appTitle = this.carService.getAppTitle();
   }
 
   loadCars() {
-    this.carService.getCars().subscribe((cars: Cars[]) => {
-
-        this.cars = cars;
-      },
-      (error) => {
-        alert(error);
-      }
-    );
+    this.cars = this.carService.getCars();
   }
 
   addCar() {

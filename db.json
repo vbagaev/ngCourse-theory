@@ -1,14 +1,6 @@
 {
-  "cars": [
-    {
-      "name": "Mensedes",
-      "color": "blue",
-      "id": 3
-    },
-    {
-      "name": "",
-      "color": "blue",
-      "id": 4
-    }
-  ]
+  "title": {
+    "value": "Менаджер машин"
+  },
+  "cars": []
 }

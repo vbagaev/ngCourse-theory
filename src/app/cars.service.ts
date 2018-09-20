@@ -11,7 +11,7 @@ export class CarsService {
     const headers = new Headers({
       'Content-Type': 'application/json; charset=utf8'
     });
-   return this.http.get('http://localhost:3100/cars', {
+   return this.http.get('http://localhost:3000/cars', {
      headers: headers
    })
      .map((response: Response) => response.json())
@@ -21,6 +21,13 @@ export class CarsService {
      );
 
   }
+  getAppTitle() {
+    return this.http.get('http://localhost:3000/title')
+      .delay(3000)
+        .map((response: Response) => response.json())
+        .map((data) => data.value);
+  }
+
 
   addCar(carName: string) {
     const data = {
