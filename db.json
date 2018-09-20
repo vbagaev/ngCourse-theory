@@ -1,13 +1,8 @@
 {
   "cars": [
     {
-      "name": "Ford",
+      "name": "Mensedes",
       "color": "blue",
-      "id": 2
-    },
-    {
-      "name": "BMW",
-      "color": "grey",
       "id": 3
     }
   ]

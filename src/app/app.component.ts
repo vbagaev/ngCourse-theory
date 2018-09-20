@@ -56,4 +56,10 @@ export class AppComponent implements OnInit{
         console.log(data);
       });
   }
+  deleteCar(car: Cars) {
+    this.carService.deleteCar(car)
+      .subscribe((data) => {
+        this.cars = this.cars.filter(c => c.id !== car.id);
+      });
+  }
 }
