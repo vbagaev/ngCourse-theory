@@ -17,8 +17,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
   this.form = new FormGroup({
-    email: new FormControl('ii', [Validators.required, Validators.email]),
-    pass: new FormControl('', Validators.required),
+    user: new FormGroup({
+      email: new FormControl('ii', [Validators.required, Validators.email]),
+      pass: new FormControl('', Validators.required),
+    }),
     country: new FormControl('ru'),
     answer: new FormControl('no')
   })
