@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   this.form = new FormGroup({
     user: new FormGroup({
-      email: new FormControl('ii', [Validators.required, Validators.email]),
+      email: new FormControl('ii', [Validators.required, Validators.email], this.checkForEmail),
       pass: new FormControl('', [Validators.required, this.checkForLength.bind(this)]),
     }),
     country: new FormControl('ru'),
@@ -42,4 +43,18 @@ export class AppComponent implements OnInit {
     }
     return null;
   }
+
+  checkForEmail(control: FormControl): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(control.value === 'test@mail.ru') {
+          resolve({'emailIsUsed': true});
+        } else {
+          resolve(null);
+        }
+      }, 3000);
+    });
+
+  }
+
 }
