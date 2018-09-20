@@ -13,6 +13,14 @@ interface Cars {
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit{
+  colors = [
+    'red',
+    'blue',
+    'green',
+    'pink',
+    'yellow',
+    'grey'
+  ];
   cars: Cars[] = [];
   carName: string = '';
 
@@ -35,6 +43,17 @@ export class AppComponent implements OnInit{
         this.cars.push(car);
       });
     this.carName = '';
+  }
 
+  getRandColor() {
+    const num = Math.round(Math.random() * (this.colors.length - 1));
+    return this.colors[num];
+  }
+
+  setNewColor(car: Cars) {
+    this.carService.changeColor(car, this.getRandColor())
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }
